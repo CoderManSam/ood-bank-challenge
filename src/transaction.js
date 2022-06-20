@@ -14,8 +14,6 @@ class Transaction {
     setDate(date) {
 
         this.date = date
-
-        return this.date
     }
 
     getTransactionType() {
@@ -27,7 +25,6 @@ class Transaction {
 
         this.transactionType = transactionType
 
-        return this.transactionType
     }
 
     getTransactionAmount() {
@@ -38,8 +35,6 @@ class Transaction {
     setTransactionAmount(transactionAmount) {
 
         this.transactionAmount = transactionAmount
-
-        return this.transactionAmount
     }
 
     getNewBalance() {
@@ -50,8 +45,6 @@ class Transaction {
     setNewBalance(newBalance) {
 
         this.newBalance = newBalance
-
-        return this.newBalance
     }
 
 }

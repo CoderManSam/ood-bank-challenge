@@ -3,7 +3,8 @@ const Transaction = require("../src/transaction.js")
 class BankAccount {
     constructor() {
         this.balance = 0
-        this.transaction = new Transaction ()
+        this.transaction = []
+        this.statement = []
     }
 
     getBalance() {
@@ -18,28 +19,65 @@ class BankAccount {
         return this.balance 
     }
 
+    getStatement() {
+
+        return this.statement
+    }
+
+    setStatement(statement) {
+
+        this.statement = statement
+
+        return this.statement 
+    }
+
     deposit(amount, date) {
 
+        const myTransaction = new Transaction ()
         this.balance += amount
 
-        this.transaction.setDate(date)
-        this.transaction.setTransactionType("credit")
-        this.transaction.setTransactionAmount(amount)
-        this.transaction.setNewBalance(this.balance) 
+        myTransaction.setDate(date)
+        myTransaction.setTransactionType("credit")
+        myTransaction.setTransactionAmount(amount)
+        myTransaction.setNewBalance(this.balance) 
+
+        this.transaction.push(myTransaction)
 
         return this.balance
     }
 
     withdrawal(amount, date) {
 
+        const myTransaction = new Transaction ()
         this.balance -= amount
 
-        this.transaction.setDate(date)
-        this.transaction.setTransactionType("dedit")
-        this.transaction.setTransactionAmount(amount)
-        this.transaction.setNewBalance(this.balance) 
+        myTransaction.setDate(date)
+        myTransaction.setTransactionType("dedit")
+        myTransaction.setTransactionAmount(amount)
+        myTransaction.setNewBalance(this.balance) 
+
+        this.transaction.push(myTransaction)
 
         return this.balance
+    }
+
+    compileTransactionsForStatement() {
+
+        for(let i = 0; i < this.transaction.length; i++) {
+
+            const transactionForStatement = {
+
+                date: this.transaction[i].date,
+                transactionType: this.transaction[i].transactionType,
+                transactionAmount: this.transaction[i].transactionAmount,
+                newBalance: this.transaction[i].newBalance
+
+            }
+
+            this.statement.push(transactionForStatement)
+        }
+
+        return this.statement
     }
 
 }
