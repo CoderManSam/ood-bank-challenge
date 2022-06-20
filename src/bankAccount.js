@@ -1,10 +1,45 @@
 const Transaction = require("../src/transaction.js")
 
+let accountNumberDefault = 11111111
+
 class BankAccount {
-    constructor() {
+    constructor(accountHolder) {
+        this.accountHolder = accountHolder
+        this.accountNumber = accountNumberDefault++
+        this.sortCode = "10-09-00"
         this.balance = 0
         this.transaction = []
         this.statement = []
+    }
+
+    getAccountHolder() {
+
+        return this.accountHolder
+    }
+
+    setAccountHolder(accountHolder) {
+
+        this.accountHolder = accountHolder
+    }
+
+    getAccountNumber() {
+
+        return this.accountNumber
+    }
+
+    setAccountNumber(accountNumber) {
+
+        this.accountNumber = accountNumber
+    }
+
+    getSortCode() {
+
+        return this.sortCode
+    }
+
+    setSortCode(sortCode) {
+
+        this.sortCode = sortCode
     }
 
     getBalance() {
@@ -15,8 +50,6 @@ class BankAccount {
     setBalance(amount) {
 
         this.balance = amount
-
-        return this.balance 
     }
 
     getStatement() {
@@ -27,8 +60,6 @@ class BankAccount {
     setStatement(statement) {
 
         this.statement = statement
-
-        return this.statement 
     }
 
     deposit(amount, date) {
@@ -52,7 +83,7 @@ class BankAccount {
         this.balance -= amount
 
         myTransaction.setDate(date)
-        myTransaction.setTransactionType("dedit")
+        myTransaction.setTransactionType("debit")
         myTransaction.setTransactionAmount(amount)
         myTransaction.setNewBalance(this.balance) 
 
