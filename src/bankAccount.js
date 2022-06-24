@@ -3,9 +3,9 @@ const Transaction = require("../src/transaction.js")
 let accountNumberDefault = 11111111
 
 class BankAccount {
-    constructor(accountHolder) {
+    constructor(accountHolder, accountNumber) {
         this.accountHolder = accountHolder
-        this.accountNumber = accountNumberDefault++
+        this.accountNumber = accountNumber
         this.sortCode = "10-09-00"
         this.balance = 0
         this.transaction = []
